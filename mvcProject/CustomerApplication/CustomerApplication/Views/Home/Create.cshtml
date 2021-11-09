@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<label>Name:</label>
+<input type="text" name="name" value="" id="txtName" placeholder="Enter your name" />
+<br />
+<label>Amount:</label>
+<input type="number" name="amount" value="" id="txtAmount" placeholder="Enter your salary" />
+<br />
+<label>City:</label>
+<input type="text" name="city" value="" id ="txtCity" placeholder="Enter your city"/>
+<br />
+<input type="submit" id="btnSubmit" onclick="btnclick()" name="submit" value="submit" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+   
+    function btnclick() {
+        var name = $("#txtName").val();
+        var amount = $("#txtAmount").val();
+        var city = $("#txtCity").val();
+
+        var obj = {
+            Name: name,
+            Amount: amount,
+            City:city
+        }
+
+        SubmitForm(obj);
+    }
+
+    function SubmitForm(obj) {
+     
+        $.ajax({
+            url: "/Home/Create",
+            method: "POST",
+            data: obj,  
+            success: function (data) {
+        
+                if (data.status == "ok") {
+                    alert(data.msg);
+                }
+            },
+            error: function (data) {
+                // any message
+            }
+        })
+    }
+
+</script>

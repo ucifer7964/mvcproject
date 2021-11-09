@@ -1,0 +1,31 @@
+﻿<!doctype html>
+
+<html>
+<head>
+    <title> customer list</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <table id="tbldata">
+        <tr>
+            <th>Sr no.</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Salary</th>
+        </tr>
+
+    </table>
+
+    <script>
+        $(document).ready(function () {
+            $.get("get", {}, function (data) {
+                var row;
+                $.each(data, function (i, v1) {
+                    row += "<tr><td>" + v1.Id + "</td><td>" + v1.Name + "</td><td>" + v1.Amount + "</td><td>" + v1.City + "</td></tr>"
+                });
+                $("#tbldata").append(row);
+            })
+        })
+    </script>
+</body>
+</html>
